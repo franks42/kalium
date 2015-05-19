@@ -40,14 +40,14 @@ public class Box {
     private final byte[] publicKey;
 
     public Box(byte[] publicKey, byte[] privateKey) {
-        this.publicKey = publicKey;
-        this.privateKey = privateKey;
         checkLength(publicKey, PUBLICKEY_BYTES);
         checkLength(privateKey, SECRETKEY_BYTES);
+        this.publicKey = publicKey.clone();
+        this.privateKey = privateKey.clone();
     }
 
     public Box(PublicKey publicKey, PrivateKey privateKey) {
-        this(publicKey.toBytes(), privateKey.toBytes());
+        this(publicKey.toBytes().clone(), privateKey.toBytes().clone());
     }
 
     public Box(String publicKey, String privateKey, Encoder encoder) {

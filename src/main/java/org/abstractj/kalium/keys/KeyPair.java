@@ -37,8 +37,8 @@ public class KeyPair {
     }
 
     public KeyPair(byte[] secretKey) {
-        this.secretKey = secretKey;
-        checkLength(this.secretKey, SECRETKEY_BYTES);
+        checkLength(secretKey, SECRETKEY_BYTES);
+        this.secretKey = secretKey.clone();
         Point point = new Point();
         this.publicKey = point.mult(secretKey).toBytes();
     }
@@ -48,10 +48,10 @@ public class KeyPair {
     }
 
     public PublicKey getPublicKey() {
-        return new PublicKey(publicKey);
+        return new PublicKey(publicKey.clone());
     }
 
     public PrivateKey getPrivateKey() {
-        return new PrivateKey(secretKey);
+        return new PrivateKey(secretKey.clone());
     }
 }

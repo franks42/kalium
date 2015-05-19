@@ -39,7 +39,7 @@ public class SigningKey {
 
     public SigningKey(byte[] seed) {
         checkLength(seed, SECRETKEY_BYTES);
-        this.seed = seed;
+        this.seed = seed.clone();
         this.secretKey = zeros(SECRETKEY_BYTES * 2);
         byte[] publicKey = zeros(PUBLICKEY_BYTES);
         isValid(sodium().crypto_sign_ed25519_seed_keypair(publicKey, secretKey, seed),
@@ -74,7 +74,7 @@ public class SigningKey {
     }
 
     public byte[] toBytes() {
-        return seed;
+        return seed.clone();
     }
 
     @Override

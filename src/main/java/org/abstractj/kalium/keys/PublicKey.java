@@ -25,8 +25,8 @@ public class PublicKey implements Key {
     private final byte[] publicKey;
 
     public PublicKey(byte[] publicKey) {
-        this.publicKey = publicKey;
         checkLength(publicKey, PUBLICKEY_BYTES);
+        this.publicKey = publicKey.clone();
     }
 
     public PublicKey(String publicKey) {
@@ -34,7 +34,7 @@ public class PublicKey implements Key {
     }
 
     public byte[] toBytes() {
-        return publicKey;
+        return publicKey.clone();
     }
 
     @Override

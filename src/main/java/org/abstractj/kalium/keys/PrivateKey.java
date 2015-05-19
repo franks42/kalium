@@ -25,8 +25,8 @@ public class PrivateKey implements Key {
     private final byte[] secretKey;
 
     public PrivateKey(byte[] secretKey) {
-        this.secretKey = secretKey;
         checkLength(secretKey, SECRETKEY_BYTES);
+        this.secretKey = secretKey.clone();
     }
 
     public PrivateKey(String secretKey) {
@@ -36,7 +36,7 @@ public class PrivateKey implements Key {
 
     @Override
     public byte[] toBytes() {
-        return secretKey;
+        return secretKey.clone();
     }
 
     @Override

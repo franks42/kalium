@@ -34,7 +34,7 @@ public class VerifyKey {
 
     public VerifyKey(byte[] key) {
         checkLength(key, PUBLICKEY_BYTES);
-        this.key = key;
+        this.key = key.clone();
     }
 
     public VerifyKey(String key, Encoder encoder) {
@@ -55,7 +55,7 @@ public class VerifyKey {
     }
 
     public byte[] toBytes() {
-        return key;
+        return key.clone();
     }
 
     @Override
